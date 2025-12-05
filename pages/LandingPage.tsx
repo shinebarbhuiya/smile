@@ -4,7 +4,7 @@ import { DashboardMockup } from '../components/DashboardMockup';
 import { Features } from '../components/Features';
 import { CodeDemo } from '../components/CodeDemo';
 import { motion } from 'framer-motion';
-import { Check, ArrowRight, Zap, Shield, Globe, Terminal, Play } from 'lucide-react';
+import { Check, ArrowRight, Zap, Shield, Globe, Terminal, Play, BarChart3, FileText, Smartphone } from 'lucide-react';
 
 export const LandingPage: React.FC = () => {
   return (
@@ -140,10 +140,15 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Use Cases Section */}
-      <section className="py-32 max-w-7xl mx-auto px-6">
+      {/* Use Cases Section - Built for Scale */}
+      <section className="py-32 max-w-7xl mx-auto px-6 overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6">Built for scale</h2>
             <p className="text-xl text-gray-500 mb-8">
               Whether you are generating Open Graph images for social media, archiving websites for compliance, or testing UI regressions, Smile scales with you.
@@ -155,8 +160,8 @@ export const LandingPage: React.FC = () => {
                 { title: "Archive & Compliance", desc: "Keep a visual record of your website over time." }
               ].map((item, i) => (
                 <div key={i} className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-brand-100 flex-shrink-0 flex items-center justify-center mt-1">
-                    <Check size={14} className="text-brand-600" strokeWidth={3} />
+                  <div className="w-8 h-8 rounded-full bg-brand-100 flex-shrink-0 flex items-center justify-center mt-1">
+                    <Check size={16} className="text-brand-600" strokeWidth={3} />
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 text-lg">{item.title}</h4>
@@ -165,23 +170,140 @@ export const LandingPage: React.FC = () => {
                 </div>
               ))}
             </ul>
-          </div>
-          <div className="relative">
-             <div className="absolute inset-0 bg-gradient-to-tr from-brand-100 to-purple-100 rounded-3xl transform rotate-3 scale-105 opacity-50"></div>
-             <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden relative z-10">
-                <div className="p-2 bg-gray-50 border-b border-gray-100 flex gap-2">
-                   <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                   <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                   <div className="w-3 h-3 rounded-full bg-green-400"></div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative h-[600px] w-full"
+          >
+             {/* Illustration container */}
+             <div className="absolute inset-0 bg-gray-50 rounded-[3rem] border border-gray-100 overflow-hidden">
+                {/* Background grid animation */}
+                <div className="absolute inset-0 opacity-30" style={{ backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+                
+                {/* Central 'Core' - A stack of servers/layers */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white rounded-full shadow-2xl shadow-brand-200/50 flex items-center justify-center z-10 border border-gray-100">
+                   <div className="w-48 h-48 bg-brand-50 rounded-full flex items-center justify-center animate-pulse">
+                      <div className="w-32 h-32 bg-brand-100 rounded-full flex items-center justify-center">
+                          <Zap size={48} className="text-brand-600" fill="currentColor" />
+                      </div>
+                   </div>
                 </div>
-                <div className="p-8 grid grid-cols-2 gap-4">
-                   <div className="bg-gray-100 rounded-lg h-32 animate-pulse"></div>
-                   <div className="bg-gray-100 rounded-lg h-32 animate-pulse delay-100"></div>
-                   <div className="bg-gray-100 rounded-lg h-32 animate-pulse delay-200"></div>
-                   <div className="bg-gray-100 rounded-lg h-32 animate-pulse delay-300"></div>
-                </div>
+
+                {/* Floating 'Cards' orbiting/floating around */}
+                
+                {/* Card 1: Social Media (Top Right) */}
+                <motion.div 
+                  animate={{ y: [-15, 15, -15], rotate: [2, 8, 2] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-16 -right-12 sm:right-6 p-4 bg-white rounded-2xl shadow-xl border border-gray-100 w-52 z-20 backdrop-blur-sm bg-white/90"
+                >
+                   <div className="flex gap-2 mb-3 items-center">
+                     <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                        <Globe size={16} />
+                     </div>
+                     <div className="h-2 w-20 bg-gray-100 rounded"></div>
+                   </div>
+                   <div className="h-24 bg-gray-100 rounded-lg mb-3 overflow-hidden relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50"></div>
+                      <div className="absolute bottom-2 left-2 w-16 h-2 bg-white/50 rounded"></div>
+                   </div>
+                   <div className="flex justify-between items-center">
+                      <span className="text-[10px] font-mono text-gray-400">og:image</span>
+                      <div className="flex items-center gap-1 text-[10px] text-green-600 font-bold">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> 200 OK
+                      </div>
+                   </div>
+                </motion.div>
+
+                {/* Card 2: Dashboard/Analytics (Bottom Left) */}
+                <motion.div 
+                   animate={{ y: [15, -15, 15], rotate: [-2, -6, -2] }}
+                   transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                   className="absolute bottom-24 -left-12 sm:left-6 p-4 bg-white rounded-2xl shadow-xl border border-gray-100 w-60 z-20 backdrop-blur-sm bg-white/90"
+                >
+                   <div className="flex justify-between mb-3 border-b border-gray-50 pb-2 items-center">
+                     <div className="flex items-center gap-2">
+                       <BarChart3 size={16} className="text-purple-500" />
+                       <span className="text-xs font-bold text-gray-800">Weekly Report</span>
+                     </div>
+                     <span className="text-[10px] bg-purple-50 text-purple-600 px-2 py-0.5 rounded font-bold">PDF</span>
+                   </div>
+                   <div className="space-y-2">
+                      <div className="h-2 w-full bg-gray-50 rounded"></div>
+                      <div className="h-2 w-3/4 bg-gray-50 rounded"></div>
+                      <div className="h-20 w-full bg-gray-50 rounded mt-2 flex items-end justify-center pb-2 gap-2 px-2">
+                          {[40, 70, 50, 90, 60, 80].map((h, i) => (
+                              <div key={i} className="flex-1 bg-brand-200 rounded-t" style={{ height: `${h}%`}}></div>
+                          ))}
+                      </div>
+                   </div>
+                </motion.div>
+                
+                {/* Card 3: Mobile View (Top Left) */}
+                 <motion.div 
+                   animate={{ y: [-10, 10, -10], rotate: [-5, -10, -5] }}
+                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                   className="absolute top-12 left-0 sm:left-12 p-3 bg-white rounded-[1.5rem] shadow-2xl border border-gray-100 w-44 z-10 opacity-90 scale-90"
+                >
+                   <div className="flex items-center gap-2 mb-2">
+                      <Smartphone size={14} className="text-gray-400" />
+                      <div className="h-1.5 w-16 bg-gray-100 rounded"></div>
+                   </div>
+                   <div className="bg-gray-800 rounded-[1rem] p-1 shadow-inner">
+                      <div className="bg-white rounded-[0.8rem] h-32 overflow-hidden relative">
+                         <div className="absolute top-0 w-full h-8 bg-gray-100"></div>
+                         <div className="p-2 pt-10 space-y-2">
+                           <div className="h-2 w-1/2 bg-gray-100 rounded"></div>
+                           <div className="h-10 bg-gray-50 rounded"></div>
+                         </div>
+                      </div>
+                   </div>
+                </motion.div>
+
+                 {/* Card 4: Invoice (Bottom Right) */}
+                 <motion.div 
+                   animate={{ y: [10, -10, 10], rotate: [5, 10, 5] }}
+                   transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                   className="absolute bottom-12 -right-8 sm:right-12 p-4 bg-white rounded-xl shadow-lg border border-gray-100 w-40 z-10 opacity-80 scale-90"
+                >
+                   <div className="flex items-center gap-2 mb-3">
+                      <FileText size={14} className="text-orange-500" />
+                      <span className="text-xs font-bold text-gray-700">Invoice #001</span>
+                   </div>
+                   <div className="space-y-1.5">
+                      <div className="h-1.5 w-full bg-gray-100 rounded"></div>
+                      <div className="h-1.5 w-full bg-gray-100 rounded"></div>
+                      <div className="h-1.5 w-2/3 bg-gray-100 rounded"></div>
+                      <div className="mt-2 h-px w-full bg-gray-100"></div>
+                      <div className="flex justify-between pt-1">
+                         <div className="h-2 w-8 bg-gray-200 rounded"></div>
+                         <div className="h-2 w-12 bg-green-100 rounded"></div>
+                      </div>
+                   </div>
+                </motion.div>
+
+                {/* Connecting Lines / Abstract Flow */}
+                 <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-40">
+                    <motion.path 
+                      d="M 50 300 C 150 300, 200 400, 300 300" 
+                      fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4 4"
+                    />
+                     <motion.path 
+                      d="M 550 100 C 450 150, 400 250, 300 300" 
+                      fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4 4"
+                    />
+                     <motion.path 
+                      d="M 500 500 C 400 450, 350 350, 300 300" 
+                      fill="none" stroke="#94a3b8" strokeWidth="1" strokeDasharray="4 4"
+                    />
+                 </svg>
+
              </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
