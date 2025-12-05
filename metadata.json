@@ -1,0 +1,15 @@
+{
+  "name": "Smile - Screenshot API",
+  "description": "A modern, high-performance Screenshot API SaaS landing page featuring glassy UI, smooth animations, and a rich dashboard visualization.",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.292.0",
+    "recharts": "^2.10.3",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0",
+    "react-router-dom": "^6.20.0"
+  },
+  "requestFramePermissions": []
+}
